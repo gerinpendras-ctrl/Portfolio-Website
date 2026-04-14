@@ -1,111 +1,139 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* ─────────────────────────────────────────────────────────────────
+   index.css
+   Global styles that complement Tailwind.
+   Import this once in main.jsx:  import './index.css';
+───────────────────────────────────────────────────────────────── */
+@import "tailwindcss";
+@tailwind utilities;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ── Google Fonts ───────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+/* ── Kill the default cursor globally ──────────────────────────── */
+*, *::before, *::after { cursor: none !important; }
+
+/* ── Cursor grow state (set by useCursor on hover) ─────────────── */
+body.cursor-grow #cursor-dot {
+  transform: scale(2.5) !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ── Noise overlay on body ──────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.55;
 }
 
-body {
-  margin: 0;
+/* ── Scroll reveal ───────────────────────────────────────────────
+   Elements with class `reveal` start hidden and transition in when
+   the `in` class is added by useScrollReveal.
+──────────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+/* ── Hero stagger animations ────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.h-i1 { opacity: 0; animation: fadeUp 0.85s forwards 0.3s; }
+.h-i2 { opacity: 0; animation: fadeUp 0.9s  forwards 0.5s; }
+.h-i3 { opacity: 0; animation: fadeUp 0.9s  forwards 0.7s; }
+.h-i4 { opacity: 0; animation: fadeUp 0.9s  forwards 0.9s; }
+.h-i5 { opacity: 0; animation: fadeUp 0.9s  forwards 1.1s; }
+.h-r  { opacity: 0; animation: fadeIn 1.2s  forwards 0.4s; }
+
+/* ── Hex shape animation (hero) ─────────────────────────────────── */
+@keyframes hexPulse {
+  0%,  100% { transform: translate(-50%, -50%) scale(1)    rotate(0deg); }
+  50%        { transform: translate(-50%, -50%) scale(1.06) rotate(5deg); }
+}
+
+.hex-shape {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation: hexPulse 4s ease-in-out infinite;
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200px; height: 280px;
+  background: linear-gradient(160deg, #2d6642, #3d8055, transparent);
+  opacity: 0.4;
+}
+
+/* ── Scroll hint bounce ─────────────────────────────────────────── */
+@keyframes scrollBounce {
+  0%,  100% { transform: translateX(-50%) translateY(0);  }
+  50%        { transform: translateX(-50%) translateY(8px); }
+}
+.scroll-hint { animation: scrollBounce 2s ease-in-out infinite; }
+
+/* ── Reusable grid overlay patterns ─────────────────────────────── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(245,166,35,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.grid-pattern-sm {
+  background-image:
+    linear-gradient(rgba(245,166,35,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,.07) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.stripe-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(245,166,35,.04) 0px, rgba(245,166,35,.04) 1px,
+    transparent 1px, transparent 20px
+  );
+}
+
+/* ── Section label helper class ─────────────────────────────────── */
+.sec-lbl {
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  color: #f5a623;
+  text-transform: uppercase;
+}
+.sec-lbl::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: #f5a623;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* ── Nav link underline animation ───────────────────────────────── */
+.nav-lnk {
+  position: relative;
 }
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+.nav-lnk::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: #f5a623;
+  transition: width 0.3s;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
+.nav-lnk:hover::after { width: 100%; }
