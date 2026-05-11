@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'alro-bold';
+    src: url('/fonts/ttf/alro-alro-bold-700.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'alro-regular';
+    src: url('/fonts/ttf/alro-alro-regular-400.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'elms-light';
+    src: url('/fonts/ttf/ElmsSans-Light.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'elms-regular';
+    src: url('/fonts/ttf/ElmsSans-Regular.ttf') format('truetype');
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #071a1a;
+    color: #e8f5f0;
+    font-family: 'elms-light', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Custom Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #071a1a; }
+  ::-webkit-scrollbar-thumb { background: #2ee8c660; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2ee8c6; }
+}
+
+@layer components {
+  /* ── Teal glow utility ── */
+  .glow-teal {
+    box-shadow: 0 0 24px #2ee8c640, 0 0 60px #2ee8c615;
+  }
+  .glow-gold {
+    box-shadow: 0 0 24px #f5c84040, 0 0 60px #f5c84015;
+  }
+
+  /* ── Glass card ── */
+  .glass-card {
+    background: rgba(13, 46, 46, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(46, 232, 198, 0.15);
+  }
+
+  /* ── Pill badge ── */
+  .pill {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold tracking-wide;
+  }
+
+  /* ── Section wrapper ── */
+  .section {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Animated underline ── */
+  .underline-teal {
+    position: relative;
+  }
+  .underline-teal::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2ee8c6;
+    transition: width 0.3s ease;
+  }
+  .underline-teal:hover::after { width: 100%; }
+}
+
+/* ── Organic background blobs ── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.18;
+}
+
+/* ── Noise texture overlay ── */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ── Reveal on scroll (JS-driven) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
