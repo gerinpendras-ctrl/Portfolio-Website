@@ -9,6 +9,7 @@ export default function ProjectCard({ project }) {
     'bg-teal/15 text-teal border border-teal/30',
     'bg-gold/15 text-gold border border-gold/30',
     'bg-purple-400/15 text-purple-300 border border-purple-400/30',
+    'bg-orange-400/15 text-orange-300 border border-orange-400/30'
   ]
 
   return (
@@ -47,7 +48,7 @@ export default function ProjectCard({ project }) {
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-xl text-text-main group-hover:text-teal transition-colors leading-tight">
+        <h3 className="font-title text-xl text-text-main group-hover:text-teal transition-colors leading-tight">
           {title}
         </h3>
 
