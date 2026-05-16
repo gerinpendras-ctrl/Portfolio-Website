@@ -6,8 +6,8 @@
 // ─── Personal Info ───────────────────────────────────────────
 export const personal = {
   name:       "Gerin Pendras",
-  tagline:    "Graphic Designer · UI/UX Designer · Frontend Developer",
-  bio:        "Hi there! My name is Gerin Pendras. I'm a Graphic Designer / UI UX Designer / Video Editor from the Philippines. Nice to meet you! This portfolio showcases my latest graphic design works. I hope these examples demonstrate my skills and qualifications, and I look forward to the opportunity to collaborate with you.",
+  tagline:    "Graphic Designer · UI/UX Designer · Frontend Developer · AI Automation Specialist",
+  bio:        "Hi there! My name is Gerin Pendras. I'm a Graphic Designer / UI UX Designer / Frontend Developer / AI Automation Specialist from the Philippines. Nice to meet you! This portfolio showcases my latest graphic design works. I hope these examples demonstrate my skills and qualifications, and I look forward to the opportunity to collaborate with you.",
   location:   "Philippines",
   // Replace this with a real URL to your photo
   avatar:     "/img/Headshot.jpg",
@@ -52,6 +52,8 @@ export const categories = [
   "Packaging",
   "Social Media",
   "3D Design",
+  "Frontend Development",
+  "Automation"
 ];
 
 // ─── Projects ────────────────────────────────────────────────
@@ -87,13 +89,18 @@ export const projects = [
     featured:    true,
     coverImage:  "/img/repay-cover.jpg",
     images: [
-      "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=RePay+Visual+Guidelines",
-      "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=RePay+Web+App",
-      "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=RePay+Mobile+App",
-      "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=RePay+Stationery",
+      "/img/repay/repay-9.jpg",
+      "/img/repay/repay-1.png",
+      "/img/repay/repay-2.png",
+      "/img/repay/repay-3.png",
+      "/img/repay/repay-4.png",
+      "/img/repay/repay-5.jpg",
+      "/img/repay/repay-6.jpg",
+      "/img/repay/repay-7.jpg",
+      "/img/repay/repay-8.jpg",
     ],
     summary:     "Brand identity enhancement and UI/UX design for a Philippine fintech platform.",
-    description: "RePay is a financial technology company dedicated to innovating the fintech landscape in the Philippines. We worked with them to improve on their existing brand identity — delivering a cohesive visual system, UI/UX for both the web app and mobile app, plus full stationery collaterals.",
+    description: `RePay is a financial technology company dedicated to innovating the fintech landscape in the Philippines. I worked with them to improve on their existing brand identity — delivering a cohesive visual system, UI/UX for both the web app and mobile app, plus full stationery collaterals. \n\n **The Problem** \nRePay faced the following issues, whose effects rippled across all of its touchpoints:\n 1.No clear brand guidelines \nCluttered color palettes and visual motifs. The result? Collaterals and creatives seemed like they came from different brands \nOutdated visuals, which have been known to lessen brand impact and undermine user trust and satisfaction`,
     scopeOfWork: [
       "Visual Design Guidelines",
       "Visual Enhancement",
@@ -294,13 +301,13 @@ export const projects = [
     categories:  ["UI/UX Design", "Web Design"],
     tags:        ["Real Estate", "Web App", "Digital Transactions"],
     featured:    false,
-    coverImage:  "https://placehold.co/800x500/0d2e2e/2ee8c6?text=Real+Estate+App",
+    coverImage:  "/img/realhomes.png",
     images: [
       "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=Landing+Page",
       "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=Property+Listing",
       "https://placehold.co/1200x750/0d2e2e/2ee8c6?text=Transaction+Flow",
     ],
-    summary:     "All-in-one real estate marketplace enabling fully digital property transactions.",
+    summary:     "SaaS all-in-one real estate marketplace enabling fully digital property transactions.",
     description: "An all-in-one real estate marketplace capable of fully digital real estate transactions — from browsing listings to signing and payment — designed for a seamless end-to-end user experience.",
     scopeOfWork: [
       "UI/UX Design",

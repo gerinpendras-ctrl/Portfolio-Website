@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { ArrowLeft, ArrowRight, ExternalLink, X } from 'lucide-react'
 import { projects } from '../data/portfolioData'
+import ReactMarkdown from 'react-markdown'
 
 export default function ProjectDetail() {
   const { id }     = useParams()
@@ -74,8 +75,8 @@ export default function ProjectDetail() {
                 </span>
               ))}
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl text-text-main">{title}</h1>
-            <p className="text-text-muted leading-relaxed text-lg">{description}</p>
+            <h1 className="font-title text-4xl sm:text-5xl text-text-main">{title}</h1>
+            <p className="text-text-muted leading-relaxed text-lg whitespace-pre-line text-wrap"><ReactMarkdown>{description}</ReactMarkdown></p>
 
             {/* Tag pills */}
             <div className="flex flex-wrap gap-2 mt-2">
@@ -142,8 +143,8 @@ export default function ProjectDetail() {
         {/* Image gallery */}
         {images.length > 1 && (
           <>
-            <h2 className="font-display text-3xl text-text-main mb-6">
-              Project <span className="text-teal">Gallery</span>
+            <h2 className="font-title text-3xl text-text-main mb-6">
+              project <span className="text-teal">gallery</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
               {images.map((src, idx) => (
